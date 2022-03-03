@@ -1,0 +1,21 @@
+<?xml version="1.0"?>   
+<configuration>
+	<input>
+		<net-file value="sim.net.xml"/>
+		<route-files value="sim.rou.xml"/>
+		<!-- <additional-files>sim.geometry.xml</additional-files> -->
+	</input>
+
+	<netstate-dump value="sim.netdmp.xml"/>
+
+	<time-to-teleport value="160" />                            
+	<processing>                                
+		<ignore-junction-blocker value="20"/>                                 
+		<!-- <lanechange.allow-swap value="true"/>                     -->
+	</processing>
+
+	<simulation>
+		<begin value="0"/>
+		<end value="-1"/>		
+	</simulation>
+</configuration>
