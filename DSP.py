@@ -121,7 +121,7 @@ def update_road_attributes(graph, time, begin_of_cycle, delta):
 
         for successor_road in graph.successors_iter(road):
             maxSpeed = graph.edge[road][successor_road]["speed"]
-            if (avgSpeed/maxSpeed) > delta:
+            if (avgSpeed/maxSpeed) < delta:
                 congestedRoads.add(road.encode("ascii"))
 
             # If it is the first measurement in a cycle, then do not compute the mean
@@ -261,7 +261,7 @@ def main():
                       help="The XML file at which the output must be written [default: %default]", metavar="FILE")
     parser.add_option("--logfile", dest="logfile", default="log/sumo-launchd.log",
                       help="log messages to logfile [default: %default]", metavar="FILE")
-    parser.add_option("-d", "--delta", dest="delta", type="float", default=0.7,
+    parser.add_option("-d", "--delta", dest="delta", type="float", default=0.5,
                       action="store", help="Congestion threshold [default: %default]", metavar="DELTA")
     parser.add_option("-l", "--level", dest="level", type="int", default=3, action="store",
                       help="Furthest distance a rerouted vehicle can be from congestion (in number of segments) [default: %default]", metavar="LEVEL")

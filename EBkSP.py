@@ -130,7 +130,7 @@ def update_road_attributes(graph, time, begin_of_cycle, delta):
             Kjam = graph.edge[road][successor_road]["length"]/(avgVehicleLength+MIN_GAP)
             capacity_sum += Kjam
             counter += 1
-            if (avgSpeed/maxSpeed) > delta:
+            if (avgSpeed/maxSpeed) < delta:
                 congestedRoads.add(road.encode("ascii"))
 
             # If it is the first measurement in a cycle, then do not compute the mean
@@ -368,7 +368,7 @@ def main():
         help="log messages to logfile [default: %default]", metavar="FILE")
     parser.add_option("-k", "--k-paths", dest="k", type="int", default=3, action="store", 
         help="Number o k shortest paths [default: %default]", metavar="K")
-    parser.add_option("-d", "--delta", dest="delta", type="float", default=0.7, action="store", 
+    parser.add_option("-d", "--delta", dest="delta", type="float", default=0.5, action="store", 
         help="Congestion threshold [default: %default]", metavar="DELTA")
     parser.add_option("-l", "--level", dest="level", type="int", default=3, action="store",
         help="Furthest distance a rerouted vehicle can be from congestion (in number of segments) [default: %default]", metavar="LEVEL")
